@@ -575,6 +575,9 @@ DATA(insert OID = 1268 (  btcostestimate   PGNSP PGUID 12 1 0 0 0 f f f f t f v 
 DESCR("btree(internal)");
 DATA(insert OID = 2785 (  btoptions		   PGNSP PGUID 12 1 0 0 0 f f f f t f s 2 0 17 "1009 16" _null_ _null_ _null_ _null_  _null_ btoptions _null_ _null_ _null_ ));
 DESCR("btree(internal)");
+DATA(insert OID = 5100 (  hypcostestimate   PGNSP PGUID 12 1 0 0 0 f f f f t f v 7 0 2278 "2281 2281 2281 2281 2281 2281 2281" _null_ _null_ _null_ _null_ _null_ btcostestimate _null_ _null_ _null_ ));
+DESCR("btree(internal)");
+
 
 DATA(insert OID = 3789 (  bringetbitmap    PGNSP PGUID 12 1 0 0 0 f f f f t f v 2 0 20 "2281 2281" _null_ _null_ _null_ _null_ _null_	bringetbitmap _null_ _null_ _null_ ));
 DESCR("brin(internal)");
