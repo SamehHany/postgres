@@ -183,4 +183,46 @@ DATA(insert OID = 4103 (	3580	range_inclusion_ops		PGNSP PGUID ));
 DATA(insert OID = 4082 (	3580	pg_lsn_minmax_ops		PGNSP PGUID ));
 DATA(insert OID = 4104 (	3580	box_inclusion_ops		PGNSP PGUID ));
 
+/*
+ *	Hyp Op Families
+ */
+
+DATA(insert OID =  5421 (	5403		abstime_ops		PGNSP PGUID ));
+DATA(insert OID =  5397 (	5403		array_ops		PGNSP PGUID ));
+DATA(insert OID =  5423 (	5403		bit_ops			PGNSP PGUID ));
+DATA(insert OID =  5424 (	5403		bool_ops		PGNSP PGUID ));
+DATA(insert OID =  5426 (	5403		bpchar_ops		PGNSP PGUID ));
+DATA(insert OID =  5428 (	5403		bytea_ops		PGNSP PGUID ));
+DATA(insert OID =  5429 (	5403		char_ops		PGNSP PGUID ));
+DATA(insert OID =  5434 (	5403		datetime_ops	PGNSP PGUID ));
+DATA(insert OID = 51970 (	5403		float_ops		PGNSP PGUID ));
+DATA(insert OID = 51974 (	5403		network_ops		PGNSP PGUID ));
+DATA(insert OID = 51976 (	5403		integer_ops		PGNSP PGUID ));
+DATA(insert OID = 51982 (	5403		interval_ops	PGNSP PGUID ));
+DATA(insert OID = 51984 (	5403		macaddr_ops		PGNSP PGUID ));
+DATA(insert OID = 51986 (	5403		name_ops		PGNSP PGUID ));
+DATA(insert OID = 51988 (	5403		numeric_ops		PGNSP PGUID ));
+DATA(insert OID = 51989 (	5403		oid_ops			PGNSP PGUID ));
+DATA(insert OID = 51991 (	5403		oidvector_ops	PGNSP PGUID ));
+DATA(insert OID = 52994 (	5403		record_ops		PGNSP PGUID ));
+DATA(insert OID = 53194 (	5403		record_image_ops	PGNSP PGUID ));
+DATA(insert OID = 51994 (	5403		text_ops		PGNSP PGUID ));
+DATA(insert OID = 51996 (	5403		time_ops		PGNSP PGUID ));
+DATA(insert OID = 52000 (	5403		timetz_ops		PGNSP PGUID ));
+DATA(insert OID = 52002 (	5403		varbit_ops		PGNSP PGUID ));
+DATA(insert OID = 52095 (	5403		text_pattern_ops	PGNSP PGUID ));
+DATA(insert OID = 52097 (	5403		bpchar_pattern_ops	PGNSP PGUID ));
+DATA(insert OID = 52099 (	5403		money_ops		PGNSP PGUID ));
+DATA(insert OID = 52789 (	5403		tid_ops			PGNSP PGUID ));
+DATA(insert OID = 52233 (	5403		reltime_ops		PGNSP PGUID ));
+DATA(insert OID = 52234 (	5403		tinterval_ops	PGNSP PGUID ));
+DATA(insert OID = 52968 (	5403		uuid_ops		PGNSP PGUID ));
+DATA(insert OID = 53253 (	5403		pg_lsn_ops		PGNSP PGUID ));
+DATA(insert OID = 53522 (	5403		enum_ops		PGNSP PGUID ));
+DATA(insert OID = 53626 (	5403		tsvector_ops	PGNSP PGUID ));
+DATA(insert OID = 53683 (	5403		tsquery_ops		PGNSP PGUID ));
+DATA(insert OID = 53901 (	5403		range_ops		PGNSP PGUID ));
+DATA(insert OID = 54033 (	5403		jsonb_ops		PGNSP PGUID ));
+
+
 #endif   /* PG_OPFAMILY_H */

@@ -600,6 +600,434 @@ DATA(insert (	627    2277 2277 1 s 1070 405 0 ));
 
 
 /*
+ *	hyp-index integer_ops
+ */
+
+/* default operators int2 */
+DATA(insert (	51976   21 21 1 s	95	5403 0 ));
+DATA(insert (	51976   21 21 2 s	522 5403 0 ));
+DATA(insert (	51976   21 21 3 s	94	5403 0 ));
+DATA(insert (	51976   21 21 4 s	524 5403 0 ));
+DATA(insert (	51976   21 21 5 s	520 5403 0 ));
+/* crosstype operators int24 */
+DATA(insert (	51976   21 23 1 s	534 5403 0 ));
+DATA(insert (	51976   21 23 2 s	540 5403 0 ));
+DATA(insert (	51976   21 23 3 s	532 5403 0 ));
+DATA(insert (	51976   21 23 4 s	542 5403 0 ));
+DATA(insert (	51976   21 23 5 s	536 5403 0 ));
+/* crosstype operators int28 */
+DATA(insert (	51976   21 20 1 s	1864	5403 0 ));
+DATA(insert (	51976   21 20 2 s	1866	5403 0 ));
+DATA(insert (	51976   21 20 3 s	1862	5403 0 ));
+DATA(insert (	51976   21 20 4 s	1867	5403 0 ));
+DATA(insert (	51976   21 20 5 s	1865	5403 0 ));
+/* default operators int4 */
+DATA(insert (	51976   23 23 1 s	97	5403 0 ));
+DATA(insert (	51976   23 23 2 s	523 5403 0 ));
+DATA(insert (	51976   23 23 3 s	96	5403 0 ));
+DATA(insert (	51976   23 23 4 s	525 5403 0 ));
+DATA(insert (	51976   23 23 5 s	521 5403 0 ));
+/* crosstype operators int42 */
+DATA(insert (	51976   23 21 1 s	535 5403 0 ));
+DATA(insert (	51976   23 21 2 s	541 5403 0 ));
+DATA(insert (	51976   23 21 3 s	533 5403 0 ));
+DATA(insert (	51976   23 21 4 s	543 5403 0 ));
+DATA(insert (	51976   23 21 5 s	537 5403 0 ));
+/* crosstype operators int48 */
+DATA(insert (	51976   23 20 1 s	37	5403 0 ));
+DATA(insert (	51976   23 20 2 s	80	5403 0 ));
+DATA(insert (	51976   23 20 3 s	15	5403 0 ));
+DATA(insert (	51976   23 20 4 s	82	5403 0 ));
+DATA(insert (	51976   23 20 5 s	76	5403 0 ));
+/* default operators int8 */
+DATA(insert (	51976   20 20 1 s	412 5403 0 ));
+DATA(insert (	51976   20 20 2 s	414 5403 0 ));
+DATA(insert (	51976   20 20 3 s	410 5403 0 ));
+DATA(insert (	51976   20 20 4 s	415 5403 0 ));
+DATA(insert (	51976   20 20 5 s	413 5403 0 ));
+/* crosstype operators int82 */
+DATA(insert (	51976   20 21 1 s	1870	5403 0 ));
+DATA(insert (	51976   20 21 2 s	1872	5403 0 ));
+DATA(insert (	51976   20 21 3 s	1868	5403 0 ));
+DATA(insert (	51976   20 21 4 s	1873	5403 0 ));
+DATA(insert (	51976   20 21 5 s	1871	5403 0 ));
+/* crosstype operators int84 */
+DATA(insert (	51976   20 23 1 s	418 5403 0 ));
+DATA(insert (	51976   20 23 2 s	420 5403 0 ));
+DATA(insert (	51976   20 23 3 s	416 5403 0 ));
+DATA(insert (	51976   20 23 4 s	430 5403 0 ));
+DATA(insert (	51976   20 23 5 s	419 5403 0 ));
+
+/*
+ *	hyp-index oid_ops
+ */
+
+DATA(insert (	51989   26 26 1 s	609 5403 0 ));
+DATA(insert (	51989   26 26 2 s	611 5403 0 ));
+DATA(insert (	51989   26 26 3 s	607 5403 0 ));
+DATA(insert (	51989   26 26 4 s	612 5403 0 ));
+DATA(insert (	51989   26 26 5 s	610 5403 0 ));
+
+/*
+ * hyp-index tid_ops
+ */
+
+DATA(insert (	52789   27 27 1 s 2799 5403 0 ));
+DATA(insert (	52789   27 27 2 s 2801 5403 0 ));
+DATA(insert (	52789   27 27 3 s 387  5403 0 ));
+DATA(insert (	52789   27 27 4 s 2802 5403 0 ));
+DATA(insert (	52789   27 27 5 s 2800 5403 0 ));
+
+/*
+ *	hyp-index oidvector_ops
+ */
+
+DATA(insert (	51991   30 30 1 s	645 5403 0 ));
+DATA(insert (	51991   30 30 2 s	647 5403 0 ));
+DATA(insert (	51991   30 30 3 s	649 5403 0 ));
+DATA(insert (	51991   30 30 4 s	648 5403 0 ));
+DATA(insert (	51991   30 30 5 s	646 5403 0 ));
+
+/*
+ *	hyp-index float_ops
+ */
+
+/* default operators float4 */
+DATA(insert (	51970   700 700 1 s	622 5403 0 ));
+DATA(insert (	51970   700 700 2 s	624 5403 0 ));
+DATA(insert (	51970   700 700 3 s	620 5403 0 ));
+DATA(insert (	51970   700 700 4 s	625 5403 0 ));
+DATA(insert (	51970   700 700 5 s	623 5403 0 ));
+/* crosstype operators float48 */
+DATA(insert (	51970   700 701 1 s	1122 5403 0 ));
+DATA(insert (	51970   700 701 2 s	1124 5403 0 ));
+DATA(insert (	51970   700 701 3 s	1120 5403 0 ));
+DATA(insert (	51970   700 701 4 s	1125 5403 0 ));
+DATA(insert (	51970   700 701 5 s	1123 5403 0 ));
+/* default operators float8 */
+DATA(insert (	51970   701 701 1 s	672 5403 0 ));
+DATA(insert (	51970   701 701 2 s	673 5403 0 ));
+DATA(insert (	51970   701 701 3 s	670 5403 0 ));
+DATA(insert (	51970   701 701 4 s	675 5403 0 ));
+DATA(insert (	51970   701 701 5 s	674 5403 0 ));
+/* crosstype operators float84 */
+DATA(insert (	51970   701 700 1 s	1132 5403 0 ));
+DATA(insert (	51970   701 700 2 s	1134 5403 0 ));
+DATA(insert (	51970   701 700 3 s	1130 5403 0 ));
+DATA(insert (	51970   701 700 4 s	1135 5403 0 ));
+DATA(insert (	51970   701 700 5 s	1133 5403 0 ));
+
+/*
+ *	hyp-index char_ops
+ */
+
+DATA(insert (	5429   18 18 1 s  631	5403 0 ));
+DATA(insert (	5429   18 18 2 s  632	5403 0 ));
+DATA(insert (	5429   18 18 3 s   92	5403 0 ));
+DATA(insert (	5429   18 18 4 s  634	5403 0 ));
+DATA(insert (	5429   18 18 5 s  633	5403 0 ));
+
+/*
+ *	hyp-index name_ops
+ */
+
+DATA(insert (	51986   19 19 1 s	660 5403 0 ));
+DATA(insert (	51986   19 19 2 s	661 5403 0 ));
+DATA(insert (	51986   19 19 3 s	93	5403 0 ));
+DATA(insert (	51986   19 19 4 s	663 5403 0 ));
+DATA(insert (	51986   19 19 5 s	662 5403 0 ));
+
+/*
+ *	hyp-index text_ops
+ */
+
+DATA(insert (	51994   25 25 1 s	664 5403 0 ));
+DATA(insert (	51994   25 25 2 s	665 5403 0 ));
+DATA(insert (	51994   25 25 3 s	98	5403 0 ));
+DATA(insert (	51994   25 25 4 s	667 5403 0 ));
+DATA(insert (	51994   25 25 5 s	666 5403 0 ));
+
+/*
+ *	hyp-index bpchar_ops
+ */
+
+DATA(insert (	5426   1042 1042 1 s 1058	5403 0 ));
+DATA(insert (	5426   1042 1042 2 s 1059	5403 0 ));
+DATA(insert (	5426   1042 1042 3 s 1054	5403 0 ));
+DATA(insert (	5426   1042 1042 4 s 1061	5403 0 ));
+DATA(insert (	5426   1042 1042 5 s 1060	5403 0 ));
+
+/*
+ *	hyp-index bytea_ops
+ */
+
+DATA(insert (	5428   17 17 1 s 1957	5403 0 ));
+DATA(insert (	5428   17 17 2 s 1958	5403 0 ));
+DATA(insert (	5428   17 17 3 s 1955	5403 0 ));
+DATA(insert (	5428   17 17 4 s 1960	5403 0 ));
+DATA(insert (	5428   17 17 5 s 1959	5403 0 ));
+
+/*
+ *	hyp-index abstime_ops
+ */
+
+DATA(insert (	5421   702 702 1 s  562	5403 0 ));
+DATA(insert (	5421   702 702 2 s  564	5403 0 ));
+DATA(insert (	5421   702 702 3 s  560	5403 0 ));
+DATA(insert (	5421   702 702 4 s  565	5403 0 ));
+DATA(insert (	5421   702 702 5 s  563	5403 0 ));
+
+/*
+ *	hyp-index datetime_ops
+ */
+
+/* default operators date */
+DATA(insert (	5434   1082 1082 1 s 1095	5403 0 ));
+DATA(insert (	5434   1082 1082 2 s 1096	5403 0 ));
+DATA(insert (	5434   1082 1082 3 s 1093	5403 0 ));
+DATA(insert (	5434   1082 1082 4 s 1098	5403 0 ));
+DATA(insert (	5434   1082 1082 5 s 1097	5403 0 ));
+/* crosstype operators vs timestamp */
+DATA(insert (	5434   1082 1114 1 s 2345	5403 0 ));
+DATA(insert (	5434   1082 1114 2 s 2346	5403 0 ));
+DATA(insert (	5434   1082 1114 3 s 2347	5403 0 ));
+DATA(insert (	5434   1082 1114 4 s 2348	5403 0 ));
+DATA(insert (	5434   1082 1114 5 s 2349	5403 0 ));
+/* crosstype operators vs timestamptz */
+DATA(insert (	5434   1082 1184 1 s 2358	5403 0 ));
+DATA(insert (	5434   1082 1184 2 s 2359	5403 0 ));
+DATA(insert (	5434   1082 1184 3 s 2360	5403 0 ));
+DATA(insert (	5434   1082 1184 4 s 2361	5403 0 ));
+DATA(insert (	5434   1082 1184 5 s 2362	5403 0 ));
+/* default operators timestamp */
+DATA(insert (	5434   1114 1114 1 s 2062	5403 0 ));
+DATA(insert (	5434   1114 1114 2 s 2063	5403 0 ));
+DATA(insert (	5434   1114 1114 3 s 2060	5403 0 ));
+DATA(insert (	5434   1114 1114 4 s 2065	5403 0 ));
+DATA(insert (	5434   1114 1114 5 s 2064	5403 0 ));
+/* crosstype operators vs date */
+DATA(insert (	5434   1114 1082 1 s 2371	5403 0 ));
+DATA(insert (	5434   1114 1082 2 s 2372	5403 0 ));
+DATA(insert (	5434   1114 1082 3 s 2373	5403 0 ));
+DATA(insert (	5434   1114 1082 4 s 2374	5403 0 ));
+DATA(insert (	5434   1114 1082 5 s 2375	5403 0 ));
+/* crosstype operators vs timestamptz */
+DATA(insert (	5434   1114 1184 1 s 2534	5403 0 ));
+DATA(insert (	5434   1114 1184 2 s 2535	5403 0 ));
+DATA(insert (	5434   1114 1184 3 s 2536	5403 0 ));
+DATA(insert (	5434   1114 1184 4 s 2537	5403 0 ));
+DATA(insert (	5434   1114 1184 5 s 2538	5403 0 ));
+/* default operators timestamptz */
+DATA(insert (	5434   1184 1184 1 s 1322	5403 0 ));
+DATA(insert (	5434   1184 1184 2 s 1323	5403 0 ));
+DATA(insert (	5434   1184 1184 3 s 1320	5403 0 ));
+DATA(insert (	5434   1184 1184 4 s 1325	5403 0 ));
+DATA(insert (	5434   1184 1184 5 s 1324	5403 0 ));
+/* crosstype operators vs date */
+DATA(insert (	5434   1184 1082 1 s 2384	5403 0 ));
+DATA(insert (	5434   1184 1082 2 s 2385	5403 0 ));
+DATA(insert (	5434   1184 1082 3 s 2386	5403 0 ));
+DATA(insert (	5434   1184 1082 4 s 2387	5403 0 ));
+DATA(insert (	5434   1184 1082 5 s 2388	5403 0 ));
+/* crosstype operators vs timestamp */
+DATA(insert (	5434   1184 1114 1 s 2540	5403 0 ));
+DATA(insert (	5434   1184 1114 2 s 2541	5403 0 ));
+DATA(insert (	5434   1184 1114 3 s 2542	5403 0 ));
+DATA(insert (	5434   1184 1114 4 s 2543	5403 0 ));
+DATA(insert (	5434   1184 1114 5 s 2544	5403 0 ));
+
+/*
+ *	hyp-index time_ops
+ */
+
+DATA(insert (	51996   1083 1083 1 s 1110 5403 0 ));
+DATA(insert (	51996   1083 1083 2 s 1111 5403 0 ));
+DATA(insert (	51996   1083 1083 3 s 1108 5403 0 ));
+DATA(insert (	51996   1083 1083 4 s 1113 5403 0 ));
+DATA(insert (	51996   1083 1083 5 s 1112 5403 0 ));
+
+/*
+ *	hyp-index timetz_ops
+ */
+
+DATA(insert (	52000   1266 1266 1 s 1552 5403 0 ));
+DATA(insert (	52000   1266 1266 2 s 1553 5403 0 ));
+DATA(insert (	52000   1266 1266 3 s 1550 5403 0 ));
+DATA(insert (	52000   1266 1266 4 s 1555 5403 0 ));
+DATA(insert (	52000   1266 1266 5 s 1554 5403 0 ));
+
+/*
+ *	hyp-index interval_ops
+ */
+
+DATA(insert (	51982   1186 1186 1 s 1332 5403 0 ));
+DATA(insert (	51982   1186 1186 2 s 1333 5403 0 ));
+DATA(insert (	51982   1186 1186 3 s 1330 5403 0 ));
+DATA(insert (	51982   1186 1186 4 s 1335 5403 0 ));
+DATA(insert (	51982   1186 1186 5 s 1334 5403 0 ));
+
+/*
+ *	hyp-index macaddr
+ */
+
+DATA(insert (	51984   829 829 1 s 1222 5403 0 ));
+DATA(insert (	51984   829 829 2 s 1223 5403 0 ));
+DATA(insert (	51984   829 829 3 s 1220 5403 0 ));
+DATA(insert (	51984   829 829 4 s 1225 5403 0 ));
+DATA(insert (	51984   829 829 5 s 1224 5403 0 ));
+
+/*
+ *	hyp-index network
+ */
+
+DATA(insert (	51974   869 869 1 s 1203 5403 0 ));
+DATA(insert (	51974   869 869 2 s 1204 5403 0 ));
+DATA(insert (	51974   869 869 3 s 1201 5403 0 ));
+DATA(insert (	51974   869 869 4 s 1206 5403 0 ));
+DATA(insert (	51974   869 869 5 s 1205 5403 0 ));
+
+/*
+ *	hyp-index numeric
+ */
+
+DATA(insert (	51988   1700 1700 1 s 1754 5403 0 ));
+DATA(insert (	51988   1700 1700 2 s 1755 5403 0 ));
+DATA(insert (	51988   1700 1700 3 s 1752 5403 0 ));
+DATA(insert (	51988   1700 1700 4 s 1757 5403 0 ));
+DATA(insert (	51988   1700 1700 5 s 1756 5403 0 ));
+
+/*
+ *	hyp-index bool
+ */
+
+DATA(insert (	5424   16 16 1 s 58		5403 0 ));
+DATA(insert (	5424   16 16 2 s 1694	5403 0 ));
+DATA(insert (	5424   16 16 3 s 91		5403 0 ));
+DATA(insert (	5424   16 16 4 s 1695	5403 0 ));
+DATA(insert (	5424   16 16 5 s 59		5403 0 ));
+
+/*
+ *	hyp-index bit
+ */
+
+DATA(insert (	5423   1560 1560 1 s 1786	5403 0 ));
+DATA(insert (	5423   1560 1560 2 s 1788	5403 0 ));
+DATA(insert (	5423   1560 1560 3 s 1784	5403 0 ));
+DATA(insert (	5423   1560 1560 4 s 1789	5403 0 ));
+DATA(insert (	5423   1560 1560 5 s 1787	5403 0 ));
+
+/*
+ *	hyp-index varbit
+ */
+
+DATA(insert (	52002   1562 1562 1 s 1806 5403 0 ));
+DATA(insert (	52002   1562 1562 2 s 1808 5403 0 ));
+DATA(insert (	52002   1562 1562 3 s 1804 5403 0 ));
+DATA(insert (	52002   1562 1562 4 s 1809 5403 0 ));
+DATA(insert (	52002   1562 1562 5 s 1807 5403 0 ));
+
+/*
+ *	hyp-index text pattern
+ */
+
+DATA(insert (	52095   25 25 1 s 2314 5403 0 ));
+DATA(insert (	52095   25 25 2 s 2315 5403 0 ));
+DATA(insert (	52095   25 25 3 s 98   5403 0 ));
+DATA(insert (	52095   25 25 4 s 2317 5403 0 ));
+DATA(insert (	52095   25 25 5 s 2318 5403 0 ));
+
+/*
+ *	hyp-index bpchar pattern
+ */
+
+DATA(insert (	52097   1042 1042 1 s 2326 5403 0 ));
+DATA(insert (	52097   1042 1042 2 s 2327 5403 0 ));
+DATA(insert (	52097   1042 1042 3 s 1054 5403 0 ));
+DATA(insert (	52097   1042 1042 4 s 2329 5403 0 ));
+DATA(insert (	52097   1042 1042 5 s 2330 5403 0 ));
+
+/*
+ *	hyp-index money_ops
+ */
+
+DATA(insert (	52099   790 790 1 s	902 5403 0 ));
+DATA(insert (	52099   790 790 2 s	904 5403 0 ));
+DATA(insert (	52099   790 790 3 s	900 5403 0 ));
+DATA(insert (	52099   790 790 4 s	905 5403 0 ));
+DATA(insert (	52099   790 790 5 s	903 5403 0 ));
+
+/*
+ *	hyp-index reltime_ops
+ */
+
+DATA(insert (	52233   703 703 1 s	568 5403 0 ));
+DATA(insert (	52233   703 703 2 s	570 5403 0 ));
+DATA(insert (	52233   703 703 3 s	566 5403 0 ));
+DATA(insert (	52233   703 703 4 s	571 5403 0 ));
+DATA(insert (	52233   703 703 5 s	569 5403 0 ));
+
+/*
+ *	hyp-index tinterval_ops
+ */
+
+DATA(insert (	52234   704 704 1 s	813 5403 0 ));
+DATA(insert (	52234   704 704 2 s	815 5403 0 ));
+DATA(insert (	52234   704 704 3 s	811 5403 0 ));
+DATA(insert (	52234   704 704 4 s	816 5403 0 ));
+DATA(insert (	52234   704 704 5 s	814 5403 0 ));
+
+/*
+ *	hyp-index array_ops
+ */
+
+DATA(insert (	5397   2277 2277 1 s 1072	5403 0 ));
+DATA(insert (	5397   2277 2277 2 s 1074	5403 0 ));
+DATA(insert (	5397   2277 2277 3 s 1070	5403 0 ));
+DATA(insert (	5397   2277 2277 4 s 1075	5403 0 ));
+DATA(insert (	5397   2277 2277 5 s 1073	5403 0 ));
+
+/*
+ *	hyp-index record_ops
+ */
+
+DATA(insert (	52994  2249 2249 1 s 2990	5403 0 ));
+DATA(insert (	52994  2249 2249 2 s 2992	5403 0 ));
+DATA(insert (	52994  2249 2249 3 s 2988	5403 0 ));
+DATA(insert (	52994  2249 2249 4 s 2993	5403 0 ));
+DATA(insert (	52994  2249 2249 5 s 2991	5403 0 ));
+
+/*
+ *	hyp-index record_image_ops
+ */
+
+DATA(insert (	53194  2249 2249 1 s 3190	5403 0 ));
+DATA(insert (	53194  2249 2249 2 s 3192	5403 0 ));
+DATA(insert (	53194  2249 2249 3 s 3188	5403 0 ));
+DATA(insert (	53194  2249 2249 4 s 3193	5403 0 ));
+DATA(insert (	53194  2249 2249 5 s 3191	5403 0 ));
+
+/*
+ * hyp-index uuid_ops
+ */
+
+DATA(insert (	52968  2950 2950 1 s 2974	5403 0 ));
+DATA(insert (	52968  2950 2950 2 s 2976	5403 0 ));
+DATA(insert (	52968  2950 2950 3 s 2972	5403 0 ));
+DATA(insert (	52968  2950 2950 4 s 2977	5403 0 ));
+DATA(insert (	52968  2950 2950 5 s 2975	5403 0 ));
+
+/*
+ * hyp-index pg_lsn_ops
+ */
+
+DATA(insert (	53253  3220 3220 1 s 3224	5403 0 ));
+DATA(insert (	53253  3220 3220 2 s 3226	5403 0 ));
+DATA(insert (	53253  3220 3220 3 s 3222	5403 0 ));
+DATA(insert (	53253  3220 3220 4 s 3227	5403 0 ));
+DATA(insert (	53253  3220 3220 5 s 3225	5403 0 ));
+
+
+/*
  *	gist box_ops
  */
 
