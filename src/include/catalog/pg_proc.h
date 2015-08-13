@@ -608,6 +608,9 @@ DESCR("brin(internal)");
 DATA(insert OID = 3952 (  brin_summarize_new_values PGNSP PGUID 12 1 0 0 0 f f f f f f v 1 0 23 "2205" _null_ _null_ _null_ _null_ _null_ brin_summarize_new_values _null_ _null_ _null_ ));
 DESCR("brin: standalone scan new table pages");
 
+DATA(insert OID = 6015 (  hypbuild		   PGNSP PGUID 12 1 0 0 0 f f f f t f v 3 0 2281 "2281 2281 2281" _null_ _null_ _null_ _null_ _null_ hypbuild _null_ _null_ _null_ ));
+DESCR("hyp(internal)");
+
 DATA(insert OID = 339 (  poly_same		   PGNSP PGUID 12 1 0 0 0 f f f f t f i 2 0 16 "604 604" _null_ _null_ _null_ _null_ _null_ poly_same _null_ _null_ _null_ ));
 DATA(insert OID = 340 (  poly_contain	   PGNSP PGUID 12 1 0 0 0 f f f f t f i 2 0 16 "604 604" _null_ _null_ _null_ _null_ _null_ poly_contain _null_ _null_ _null_ ));
 DATA(insert OID = 341 (  poly_left		   PGNSP PGUID 12 1 0 0 0 f f f f t f i 2 0 16 "604 604" _null_ _null_ _null_ _null_ _null_ poly_left _null_ _null_ _null_ ));

@@ -158,6 +158,40 @@ btbuild(PG_FUNCTION_ARGS)
 	PG_RETURN_POINTER(result);
 }
 
+/* Location of hypbuild is to be changes */
+Datum hypbuild(PG_FUNCTION_ARGS)
+{
+	Relation	heap = (Relation) PG_GETARG_POINTER(0);
+	Relation	index = (Relation) PG_GETARG_POINTER(1);
+	IndexInfo  *indexInfo = (IndexInfo *) PG_GETARG_POINTER(2);
+	IndexBuildResult *result;
+	double		reltuples = 0;
+	BTBuildState buildstate;
+
+	buildstate.isUnique = indexInfo->ii_Unique;
+	buildstate.haveDead = false;
+	buildstate.heapRel = heap;
+	buildstate.spool = NULL;
+	buildstate.spool2 = NULL;
+	buildstate.indtuples = 0;
+	
+	/*
+	 * We expect to be called exactly once for any index relation. If that's
+	 * not the case, big trouble's what we have.
+	 */
+	
+	if (RelationGetNumberOfBlocks(index) != 0)
+		elog(ERROR, "index \"%s\" already contains data",
+			 RelationGetRelationName(index));
+	
+	result = (IndexBuildResult *) palloc(sizeof(IndexBuildResult));
+	
+	result->heap_tuples = reltuples;
+	result->index_tuples = buildstate.indtuples;
+
+	PG_RETURN_POINTER(result);
+}
+
 /*
  * Per-tuple callback from IndexBuildHeapScan
  */
