@@ -465,6 +465,7 @@ set_plain_rel_size(PlannerInfo *root, RelOptInfo *rel, RangeTblEntry *rte)
 static void
 set_plain_rel_pathlist(PlannerInfo *root, RelOptInfo *rel, RangeTblEntry *rte)
 {
+	elog(DEBUG1, "set_plain_rel_pathlist() called.");
 	Relids		required_outer;
 
 	/*

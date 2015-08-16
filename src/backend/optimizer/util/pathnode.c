@@ -768,6 +768,10 @@ create_index_path(PlannerInfo *root,
 				  Relids required_outer,
 				  double loop_count)
 {
+	unsigned int index_oid = (unsigned int)(index->relam);
+	unsigned int amcostestimate_oid = (unsigned int)(index->amcostestimate);
+	elog(DEBUG1, "create_index_path() called: Index Oid = %u | amcostestimate Oid = %u.", index_oid, amcostestimate_oid);
+	
 	IndexPath  *pathnode = makeNode(IndexPath);
 	RelOptInfo *rel = index->rel;
 	List	   *indexquals,
@@ -1764,6 +1768,7 @@ reparameterize_path(PlannerInfo *root, Path *path,
 					Relids required_outer,
 					double loop_count)
 {
+	elog(DEBUG1, "reparameterize_path() called.");
 	RelOptInfo *rel = path->parent;
 
 	/* Can only increase, not decrease, path's parameterization */

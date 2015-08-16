@@ -4529,6 +4529,7 @@ expression_planner(Expr *expr)
 bool
 plan_cluster_use_sort(Oid tableOid, Oid indexOid)
 {
+	elog(DEBUG1, "plan_cluster_use_sort() called.");
 	PlannerInfo *root;
 	Query	   *query;
 	PlannerGlobal *glob;

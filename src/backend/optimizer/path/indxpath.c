@@ -230,6 +230,7 @@ static Const *string_to_const(const char *str, Oid datatype);
 void
 create_index_paths(PlannerInfo *root, RelOptInfo *rel)
 {
+	elog(DEBUG1, "create_index_paths() called (plural).");
 	List	   *indexpaths;
 	List	   *bitindexpaths;
 	List	   *bitjoinpaths;
@@ -247,10 +248,16 @@ create_index_paths(PlannerInfo *root, RelOptInfo *rel)
 	bitindexpaths = bitjoinpaths = joinorclauses = NIL;
 
 	/* Examine each index in turn */
+	int it_num = 0;
 	foreach(lc, rel->indexlist)
 	{
+		elog(DEBUG1, "Iteration: %d.", it_num++);
 		IndexOptInfo *index = (IndexOptInfo *) lfirst(lc);
 
+		unsigned int index_oid = (unsigned int)(index->relam);
+		elog(DEBUG1, "Index Oid = %u", index_oid);
+		elog(DEBUG1, "amcostestimate Oid = %u", (unsigned int)(index->amcostestimate));
+		
 		/* Protect limited-size array in IndexClauseSets */
 		Assert(index->ncolumns <= INDEX_MAX_KEYS);
 
@@ -607,6 +614,7 @@ get_join_index_paths(PlannerInfo *root, RelOptInfo *rel,
 					 Relids relids,
 					 List **considered_relids)
 {
+	elog(DEBUG1, "get_join_index_paths() called.");
 	IndexClauseSet clauseset;
 	int			indexcol;
 
@@ -733,6 +741,9 @@ get_index_paths(PlannerInfo *root, RelOptInfo *rel,
 				IndexOptInfo *index, IndexClauseSet *clauses,
 				List **bitindexpaths)
 {
+	unsigned int index_oid = (unsigned int)(index->relam);
+	unsigned int amcostestimate_oid = (unsigned int)(index->amcostestimate);
+	elog(DEBUG1, "get_index_paths() called: Index Oid = %u | amcostestimate Oid = %u.", index_oid, amcostestimate_oid);
 	List	   *indexpaths;
 	bool		skip_nonnative_saop = false;
 	bool		skip_lower_saop = false;
@@ -858,6 +869,9 @@ build_index_paths(PlannerInfo *root, RelOptInfo *rel,
 				  bool *skip_nonnative_saop,
 				  bool *skip_lower_saop)
 {
+	unsigned int index_oid = (unsigned int)(index->relam);
+	unsigned int amcostestimate_oid = (unsigned int)(index->amcostestimate);
+	elog(DEBUG1, "build_index_paths() called: Index Oid = %u | amcostestimate Oid = %u.", index_oid, amcostestimate_oid);
 	List	   *result = NIL;
 	IndexPath  *ipath;
 	List	   *index_clauses;
@@ -1103,6 +1117,7 @@ static List *
 build_paths_for_OR(PlannerInfo *root, RelOptInfo *rel,
 				   List *clauses, List *other_clauses)
 {
+	elog(DEBUG1, "build_paths_for_OR() called.");
 	List	   *result = NIL;
 	List	   *all_clauses = NIL;		/* not computed till needed */
 	ListCell   *lc;

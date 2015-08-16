@@ -310,6 +310,10 @@ cost_samplescan(Path *path, PlannerInfo *root,
 void
 cost_index(IndexPath *path, PlannerInfo *root, double loop_count)
 {
+	unsigned int index_oid = (unsigned int)(path->indexinfo->relam);
+	unsigned int amcostestimate_oid = (unsigned int)(path->indexinfo->amcostestimate);
+	elog(DEBUG1, "cost_index() called: Index Oid = %u | amcostestimate Oid = %u.", index_oid, amcostestimate_oid);
+	
 	IndexOptInfo *index = path->indexinfo;
 	RelOptInfo *baserel = index->rel;
 	bool		indexonly = (path->path.pathtype == T_IndexOnlyScan);
