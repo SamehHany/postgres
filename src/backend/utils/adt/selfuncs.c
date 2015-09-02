@@ -6687,10 +6687,14 @@ btcostestimate(PG_FUNCTION_ARGS)
 
 	ReleaseVariableStats(vardata);
 
-	*indexStartupCost = costs.indexStartupCost;
+	/**indexStartupCost = costs.indexStartupCost;
 	*indexTotalCost = costs.indexTotalCost;
 	*indexSelectivity = costs.indexSelectivity;
-	*indexCorrelation = costs.indexCorrelation;
+	*indexCorrelation = costs.indexCorrelation;*/
+	*indexStartupCost = 0;
+	*indexTotalCost = 0;
+	*indexSelectivity = 0;
+	*indexCorrelation = 1;
 
 	PG_RETURN_VOID();
 }

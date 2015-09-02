@@ -775,6 +775,7 @@ ExecCheckXactReadOnly(PlannedStmt *plannedstmt)
 static void
 InitPlan(QueryDesc *queryDesc, int eflags)
 {
+	elog(NOTICE, "InitPlan() called");
 	CmdType		operation = queryDesc->operation;
 	PlannedStmt *plannedstmt = queryDesc->plannedstmt;
 	Plan	   *plan = plannedstmt->planTree;

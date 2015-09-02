@@ -74,6 +74,7 @@ static HeapTuple reorderqueue_pop(IndexScanState *node);
 static TupleTableSlot *
 IndexNext(IndexScanState *node)
 {
+	elog(NOTICE, "IndexNext() called");
 	EState	   *estate;
 	ExprContext *econtext;
 	ScanDirection direction;
@@ -484,6 +485,7 @@ reorderqueue_pop(IndexScanState *node)
 TupleTableSlot *
 ExecIndexScan(IndexScanState *node)
 {
+	elog(NOTICE, "ExecIndexScan() called");
 	/*
 	 * If we have runtime keys and they've not already been set up, do it now.
 	 */
@@ -818,6 +820,7 @@ ExecIndexRestrPos(IndexScanState *node)
 IndexScanState *
 ExecInitIndexScan(IndexScan *node, EState *estate, int eflags)
 {
+	elog(NOTICE, "ExecInitIndexScan() called");
 	IndexScanState *indexstate;
 	Relation	currentRelation;
 	bool		relistarget;

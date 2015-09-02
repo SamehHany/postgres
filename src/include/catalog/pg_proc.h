@@ -5337,6 +5337,19 @@ DESCR("get an individual replication origin's replication progress");
 DATA(insert OID = 6014 ( pg_show_replication_origin_status PGNSP PGUID 12 1 100 0 0 f f f f f t v 0 0 2249 "" "{26,25,3220,3220}" "{o,o,o,o}" "{local_id, external_id, remote_lsn, local_lsn}" _null_ _null_ pg_show_replication_origin_status _null_ _null_ _null_ ));
 DESCR("get progress for all replication origins");
 
+DATA(insert OID = 6330 (  hypgettuple		   PGNSP PGUID 12 1 0 0 0 f f f f t f v 2 0 16 "2281 2281" _null_ _null_ _null_ _null_ _null_	hypgettuple _null_ _null_ _null_ ));
+DESCR("hyp(internal)");
+DATA(insert OID = 6333 (  hypbeginscan	   PGNSP PGUID 12 1 0 0 0 f f f f t f v 3 0 2281 "2281 2281 2281" _null_ _null_ _null_ _null_ _null_	hypbeginscan _null_ _null_ _null_ ));
+DESCR("hyp(internal)");
+DATA(insert OID = 6334 (  hyprescan		   PGNSP PGUID 12 1 0 0 0 f f f f t f v 5 0 2278 "2281 2281 2281 2281 2281" _null_ _null_ _null_ _null_ _null_ hyprescan _null_ _null_ _null_ ));
+DESCR("hyp(internal)");
+DATA(insert OID = 6335 (  hypendscan		   PGNSP PGUID 12 1 0 0 0 f f f f t f v 1 0 2278 "2281" _null_ _null_ _null_ _null_ _null_ hypendscan _null_ _null_ _null_ ));
+DESCR("hyp(internal)");
+DATA(insert OID = 6336 (  hypmarkpos		   PGNSP PGUID 12 1 0 0 0 f f f f t f v 1 0 2278 "2281" _null_ _null_ _null_ _null_ _null_ hypmarkpos _null_ _null_ _null_ ));
+DESCR("hyp(internal)");
+DATA(insert OID = 6337 (  hyprestrpos		   PGNSP PGUID 12 1 0 0 0 f f f f t f v 1 0 2278 "2281" _null_ _null_ _null_ _null_ _null_ hyprestrpos _null_ _null_ _null_ ));
+DESCR("hyp(internal)");
+
 /*
  * Symbolic values for provolatile column: these indicate whether the result
  * of a function is dependent *only* on the values of its explicit arguments,

@@ -15,6 +15,7 @@
  *	  src/backend/access/nbtree/nbtree.c
  *
  *-------------------------------------------------------------------------
+ * Location of all hyp functions and their helper functions is to be changed
  */
 #include "postgres.h"
 
@@ -158,7 +159,7 @@ btbuild(PG_FUNCTION_ARGS)
 	PG_RETURN_POINTER(result);
 }
 
-/* Location of hypbuild is to be changes */
+/* Location of hypbuild is to be changed */
 Datum hypbuild(PG_FUNCTION_ARGS)
 {
 	Relation	heap = (Relation) PG_GETARG_POINTER(0);
@@ -287,6 +288,9 @@ btinsert(PG_FUNCTION_ARGS)
 Datum
 btgettuple(PG_FUNCTION_ARGS)
 {
+	/* 
+	 * Output tuple: scan->xs_ctup.t_self
+	 */
 	IndexScanDesc scan = (IndexScanDesc) PG_GETARG_POINTER(0);
 	ScanDirection dir = (ScanDirection) PG_GETARG_INT32(1);
 	BTScanOpaque so = (BTScanOpaque) scan->opaque;
@@ -355,6 +359,147 @@ btgettuple(PG_FUNCTION_ARGS)
 	} while (so->numArrayKeys && _bt_advance_array_keys(scan, dir));
 
 	PG_RETURN_BOOL(res);
+}
+
+/*
+ *	hypgettuple() -- Get the next tuple in the scan.
+ *	Note: Location of hypbuild is to be changed
+ */
+
+HeapTuple
+CreateTuple(Relation r, int x, double y)
+{
+	int yy = (int )y;
+	int natts = RelationGetDescr(r)->natts;
+
+	Datum* values = (Datum *) palloc(natts * sizeof(Datum));
+	bool* isnull = (bool *) palloc(natts * sizeof(bool));
+	 
+	values[0]=x;
+	values[1]=yy;
+	isnull[0] = false;
+	isnull[1] = false;
+	
+	HeapTuple t= heap_form_tuple(RelationGetDescr(r),
+				values,
+				isnull);
+
+	pfree(values);
+	pfree(isnull);
+	return t;
+}
+
+Form_pg_attribute
+CreateEmptyAttribute()
+{
+	Form_pg_attribute attr = (Form_pg_attribute) palloc(sizeof(Form_pg_attribute));
+	
+	/*attr->attrelid = Anum_pg_attribute_attrelid;
+	attr->attname = Anum_pg_attribute_attname;
+	attr->atttypid = Anum_pg_attribute_atttypid;
+	attr->attstattarget = Anum_pg_attribute_attstattarget;
+	attr->attlen = Anum_pg_attribute_attlen;
+	attr->attnum = Anum_pg_attribute_attnum;
+	attr->attndims = Anum_pg_attribute_attndims;
+	attr->attcacheoff = Anum_pg_attribute_attcacheoff;
+	attr->atttypmod = Anum_pg_attribute_atttypmod;
+	attr->attbyval = Anum_pg_attribute_attbyval;
+	attr->attstorage = Anum_pg_attribute_attstorage;
+	attr->attalign = Anum_pg_attribute_attalign;
+	attr->attnotnull = Anum_pg_attribute_attnotnull;
+	attr->atthasdef = Anum_pg_attribute_atthasdef;
+	attr->attisdropped = Anum_pg_attribute_attisdropped;
+	attr->attislocal = Anum_pg_attribute_attislocal;
+	attr->attinhcount = Anum_pg_attribute_attinhcount;
+	attr->attcollation = Anum_pg_attribute_attcollation;*/
+	//attr->attacl = Anum_pg_attribute_attacl;
+	//attr->attoptions = Anum_pg_attribute_attoptions;
+	//attr->attfdwoptions = Anum_pg_attribute_attfdwoptions;
+	
+	attr->attrelid = 0;
+	strcpy(attr->attname.data, "Null");
+	attr->atttypid = 23;
+	attr->attstattarget = 1;
+	attr->attlen = 4;
+	attr->attnum = 5;
+	attr->attndims = 0;
+	attr->attcacheoff = 1;
+	attr->atttypmod = 1;
+	attr->attbyval = 't';
+	attr->attstorage = 'p';
+	attr->attalign = 'i';
+	attr->attnotnull = false;
+	attr->atthasdef = false;
+	attr->attisdropped = false;
+	attr->attislocal = true;
+	attr->attinhcount = 0;
+	attr->attcollation = 0;
+	
+	return attr;
+}
+
+HeapTuple
+CreateEmptyTuple()
+{
+	Form_pg_attribute *attrs = (Form_pg_attribute) palloc(sizeof(Form_pg_attribute*));
+	attrs[0] = CreateEmptyAttribute();
+	elog(NOTICE, "nbtree.c:446: attrs[0]->attlen = %d.", attrs[0]->attlen);
+	
+	TupleDesc tuple_desc = CreateTupleDesc(1, false, attrs);
+	elog(NOTICE, "nbtree.c:449: tuple_desc->attrs[0]->attlen = %d.", tuple_desc->attrs[0]->attlen);
+	
+	Datum* values = (Datum *) palloc(sizeof(Datum));
+	bool* isnull = (bool *) palloc(sizeof(bool));
+	
+	//int *ptr;
+	//*ptr = 0;
+	//values[0] = (Datum)ptr;
+	values[0] = 0;
+	isnull[0] = false;
+	
+	HeapTuple t = heap_form_tuple(tuple_desc, values, isnull);
+	
+	//pfree(attrs[0]);
+	//pfree(attrs);
+	pfree(values);
+	pfree(isnull);
+	
+	return t;
+}
+
+void
+HeapTupleCopy(HeapTuple src, HeapTupleData *dest)
+{
+	dest->t_len = src->t_len;
+	
+	
+	/* Copy t_self */
+	
+	/* Copy ip_blkid */
+	dest->t_self.ip_blkid.bi_hi = src->t_self.ip_blkid.bi_hi;
+	dest->t_self.ip_blkid.bi_lo = src->t_self.ip_blkid.bi_lo;
+	
+	dest->t_self.ip_posid = src->t_self.ip_posid;
+	
+	
+	dest->t_tableOid = src->t_tableOid;
+	dest->t_data = src->t_data;
+}
+
+Datum
+hypgettuple(PG_FUNCTION_ARGS)
+{
+	/* 
+	 * Output tuple: scan->xs_ctup.t_self
+	 */
+	IndexScanDesc scan = (IndexScanDesc) PG_GETARG_POINTER(0);
+	ScanDirection dir = (ScanDirection) PG_GETARG_INT32(1);
+	BTScanOpaque so = (BTScanOpaque) scan->opaque;
+	bool		res;
+	
+	HeapTupleCopy(CreateEmptyTuple(), &(scan->xs_ctup));
+	
+	PG_RETURN_BOOL(true);
 }
 
 /*
@@ -472,6 +617,7 @@ btbeginscan(PG_FUNCTION_ARGS)
 Datum
 btrescan(PG_FUNCTION_ARGS)
 {
+	elog(NOTICE, "btrescan() called");
 	IndexScanDesc scan = (IndexScanDesc) PG_GETARG_POINTER(0);
 	ScanKey		scankey = (ScanKey) PG_GETARG_POINTER(1);
 
@@ -677,6 +823,83 @@ btrestrpos(PG_FUNCTION_ARGS)
 			BTScanPosInvalidate(so->currPos);
 	}
 
+	PG_RETURN_VOID();
+}
+
+/*
+ *	hypbeginscan() -- start a scan on a btree index
+ */
+Datum
+hypbeginscan(PG_FUNCTION_ARGS)
+{
+	Relation	rel = (Relation) PG_GETARG_POINTER(0);
+	
+	IndexScanDesc scan;
+
+	scan = (IndexScanDesc) palloc(sizeof(IndexScanDescData));
+
+	scan->heapRelation = NULL;
+	scan->indexRelation = rel;
+	scan->xs_snapshot = NULL;
+	scan->numberOfKeys = 0;
+	scan->numberOfOrderBys = 0;
+	
+	scan->keyData = NULL;
+	scan->orderByData = NULL;
+
+	scan->xs_want_itup = false;
+
+	scan->kill_prior_tuple = false;
+	scan->xactStartedInRecovery = false;
+	scan->ignore_killed_tuples = !scan->xactStartedInRecovery;
+
+	scan->opaque = NULL;
+
+	scan->xs_itup = NULL;
+	scan->xs_itupdesc = NULL;
+
+	ItemPointerSetInvalid(&scan->xs_ctup.t_self);
+	scan->xs_ctup.t_data = NULL;
+	scan->xs_cbuf = InvalidBuffer;
+	scan->xs_continue_hot = false;
+
+	PG_RETURN_POINTER(scan);
+}
+
+/*
+ *	hyprescan() -- rescan an index relation
+ */
+
+Datum
+hyprescan(PG_FUNCTION_ARGS)
+{
+	PG_RETURN_VOID();
+}
+
+/*
+ *	hypendscan() -- close down a scan
+ */
+Datum
+hypendscan(PG_FUNCTION_ARGS)
+{
+	PG_RETURN_VOID();
+}
+
+/*
+ *	hypmarkpos() -- save current scan position
+ */
+Datum
+hypmarkpos(PG_FUNCTION_ARGS)
+{
+	PG_RETURN_VOID();
+}
+
+/*
+ *	hyprestrpos() -- restore scan to last saved position
+ */
+Datum
+hyprestrpos(PG_FUNCTION_ARGS)
+{
 	PG_RETURN_VOID();
 }
 

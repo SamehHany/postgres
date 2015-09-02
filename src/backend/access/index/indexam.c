@@ -243,6 +243,7 @@ index_beginscan(Relation heapRelation,
 				Snapshot snapshot,
 				int nkeys, int norderbys)
 {
+	elog(NOTICE, "index_beginscan() called");
 	IndexScanDesc scan;
 
 	scan = index_beginscan_internal(indexRelation, nkeys, norderbys, snapshot);
@@ -268,6 +269,7 @@ index_beginscan_bitmap(Relation indexRelation,
 					   Snapshot snapshot,
 					   int nkeys)
 {
+	elog(NOTICE, "index_beginscan_bitmap() called");
 	IndexScanDesc scan;
 
 	scan = index_beginscan_internal(indexRelation, nkeys, 0, snapshot);
@@ -288,6 +290,7 @@ static IndexScanDesc
 index_beginscan_internal(Relation indexRelation,
 						 int nkeys, int norderbys, Snapshot snapshot)
 {
+	elog(NOTICE, "index_beginscan_internal() called");
 	IndexScanDesc scan;
 	FmgrInfo   *procedure;
 
@@ -305,6 +308,8 @@ index_beginscan_internal(Relation indexRelation,
 	/*
 	 * Tell the AM to open a scan.
 	 */
+	
+	elog(NOTICE, "procedure->fn_oid == %d", procedure->fn_oid);
 	scan = (IndexScanDesc)
 		DatumGetPointer(FunctionCall3(procedure,
 									  PointerGetDatum(indexRelation),
@@ -445,6 +450,7 @@ index_restrpos(IndexScanDesc scan)
 ItemPointer
 index_getnext_tid(IndexScanDesc scan, ScanDirection direction)
 {
+	elog(NOTICE, "index_getnext_tid() called");
 	FmgrInfo   *procedure;
 	bool		found;
 
@@ -459,6 +465,7 @@ index_getnext_tid(IndexScanDesc scan, ScanDirection direction)
 	 * scan->xs_recheck and possibly scan->xs_itup, though we pay no attention
 	 * to those fields here.
 	 */
+	elog(NOTICE, "procedure->fn_oid = %d", procedure->fn_oid);
 	found = DatumGetBool(FunctionCall2(procedure,
 									   PointerGetDatum(scan),
 									   Int32GetDatum(direction)));
@@ -581,6 +588,7 @@ index_fetch_heap(IndexScanDesc scan)
 HeapTuple
 index_getnext(IndexScanDesc scan, ScanDirection direction)
 {
+	elog(NOTICE, "index_getnext() called");
 	HeapTuple	heapTuple;
 	ItemPointer tid;
 

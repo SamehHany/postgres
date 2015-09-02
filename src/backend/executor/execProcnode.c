@@ -133,6 +133,7 @@
 PlanState *
 ExecInitNode(Plan *node, EState *estate, int eflags)
 {
+	elog(NOTICE, "ExecInitNode() called");
 	PlanState  *result;
 	List	   *subps;
 	ListCell   *l;
@@ -366,6 +367,7 @@ ExecInitNode(Plan *node, EState *estate, int eflags)
 TupleTableSlot *
 ExecProcNode(PlanState *node)
 {
+	elog(NOTICE, "ExecProcNode() called");
 	TupleTableSlot *result;
 
 	CHECK_FOR_INTERRUPTS();

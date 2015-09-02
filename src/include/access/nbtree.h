@@ -653,8 +653,6 @@ typedef BTScanOpaqueData *BTScanOpaque;
  * prototypes for functions in nbtree.c (external entry points for btree)
  */
 extern Datum btbuild(PG_FUNCTION_ARGS);
-/* Location of hypbuild is to be changes */
-extern Datum hypbuild(PG_FUNCTION_ARGS);
 extern Datum btbuildempty(PG_FUNCTION_ARGS);
 extern Datum btinsert(PG_FUNCTION_ARGS);
 extern Datum btbeginscan(PG_FUNCTION_ARGS);
@@ -668,6 +666,14 @@ extern Datum btbulkdelete(PG_FUNCTION_ARGS);
 extern Datum btvacuumcleanup(PG_FUNCTION_ARGS);
 extern Datum btcanreturn(PG_FUNCTION_ARGS);
 extern Datum btoptions(PG_FUNCTION_ARGS);
+/* Location of the following functions is to be changed */
+extern Datum hypbuild(PG_FUNCTION_ARGS);
+extern Datum hypgettuple(PG_FUNCTION_ARGS);
+extern Datum hypbeginscan(PG_FUNCTION_ARGS);
+extern Datum hyprescan(PG_FUNCTION_ARGS);
+extern Datum hypendscan(PG_FUNCTION_ARGS);
+extern Datum hypmarkpos(PG_FUNCTION_ARGS);
+extern Datum hyprestrpos(PG_FUNCTION_ARGS);
 
 /*
  * prototypes for functions in nbtinsert.c

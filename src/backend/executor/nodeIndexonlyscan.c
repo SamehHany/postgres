@@ -392,6 +392,7 @@ ExecIndexOnlyRestrPos(IndexOnlyScanState *node)
 IndexOnlyScanState *
 ExecInitIndexOnlyScan(IndexOnlyScan *node, EState *estate, int eflags)
 {
+	elog(NOTICE, "ExecInitIndexOnlyScan() called");
 	IndexOnlyScanState *indexstate;
 	Relation	currentRelation;
 	bool		relistarget;

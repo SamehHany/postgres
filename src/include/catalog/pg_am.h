@@ -136,7 +136,7 @@ DATA(insert OID = 3580 (  brin	   0 15 f f f f t t f t t f f 0 brininsert brinbe
 DESCR("block range index (BRIN) access method");
 #define BRIN_AM_OID 3580
 
-DATA(insert OID = 5403 (  hyp		5 2 t f t t t t t t f t t 0 btinsert btbeginscan btgettuple btgetbitmap btrescan btendscan btmarkpos btrestrpos hypbuild btbuildempty btbulkdelete btvacuumcleanup btcanreturn hypcostestimate btoptions ));
+DATA(insert OID = 5403 (  hyp		5 2 t f t t t t t t f t t 0 btinsert hypbeginscan hypgettuple btgetbitmap hyprescan hypendscan hypmarkpos hyprestrpos hypbuild btbuildempty btbulkdelete btvacuumcleanup btcanreturn hypcostestimate btoptions ));
 DESCR("hyp index access method");
 #define HYP_AM_OID 5403
 

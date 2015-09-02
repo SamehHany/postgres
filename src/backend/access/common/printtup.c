@@ -302,6 +302,7 @@ printtup_prepare_info(DR_printtup *myState, TupleDesc typeinfo, int numAttrs)
 static void
 printtup(TupleTableSlot *slot, DestReceiver *self)
 {
+	elog(NOTICE, "printtup() called");
 	TupleDesc	typeinfo = slot->tts_tupleDescriptor;
 	DR_printtup *myState = (DR_printtup *) self;
 	MemoryContext oldcontext;

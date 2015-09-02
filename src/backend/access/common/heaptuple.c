@@ -214,6 +214,8 @@ heap_fill_tuple(TupleDesc tupleDesc,
 			Pointer		val = DatumGetPointer(values[i]);
 
 			*infomask |= HEAP_HASVARWIDTH;
+			elog(NOTICE, "val = %d.", val);
+			elog(NOTICE, "No errors at line 218.");
 			if (VARATT_IS_EXTERNAL(val))
 			{
 				if (VARATT_IS_EXTERNAL_EXPANDED(val))
@@ -259,6 +261,7 @@ heap_fill_tuple(TupleDesc tupleDesc,
 				data_length = VARSIZE(val);
 				memcpy(data, val, data_length);
 			}
+			elog(NOTICE, "No errors at line 264.");
 		}
 		else if (att[i]->attlen == -2)
 		{
@@ -681,6 +684,17 @@ heap_copy_tuple_as_datum(HeapTuple tuple, TupleDesc tupleDesc)
 	return PointerGetDatum(td);
 }
 
+/*HeapTuple CreateTuple(Relation r, Datum* values, bool* isnull)
+{
+	int natts = RelationGetDescr(r)->natts;
+	
+	HeapTuple t= heap_form_tuple(RelationGetDescr(r),
+				values,
+				isnull);
+	
+	return t;
+}*/
+
 /*
  * heap_form_tuple
  *		construct a tuple from the given values[] and isnull[] arrays,
@@ -693,6 +707,7 @@ heap_form_tuple(TupleDesc tupleDescriptor,
 				Datum *values,
 				bool *isnull)
 {
+	elog(NOTICE, "heaptuple.c:710: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
 	HeapTuple	tuple;			/* return tuple */
 	HeapTupleHeader td;			/* tuple data */
 	Size		len,
@@ -707,6 +722,7 @@ heap_form_tuple(TupleDesc tupleDescriptor,
 				(errcode(ERRCODE_TOO_MANY_COLUMNS),
 				 errmsg("number of columns (%d) exceeds limit (%d)",
 						numberOfAttributes, MaxTupleAttributeNumber)));
+	elog(NOTICE, "heaptuple.c:725: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
 
 	/*
 	 * Check for nulls
@@ -737,12 +753,16 @@ heap_form_tuple(TupleDesc tupleDescriptor,
 
 	len += data_len;
 
+	elog(NOTICE, "heaptuple.c:756: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
+	
 	/*
 	 * Allocate and zero the space needed.  Note that the tuple body and
 	 * HeapTupleData management structure are allocated in one chunk.
 	 */
 	tuple = (HeapTuple) palloc0(HEAPTUPLESIZE + len);
+	elog(NOTICE, "heaptuple.c:763: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
 	tuple->t_data = td = (HeapTupleHeader) ((char *) tuple + HEAPTUPLESIZE);
+	elog(NOTICE, "heaptuple.c:765: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
 
 	/*
 	 * And fill in the information.  Note we fill the Datum fields even though
@@ -750,21 +770,29 @@ heap_form_tuple(TupleDesc tupleDescriptor,
 	 * identify the tuple type if needed.
 	 */
 	tuple->t_len = len;
+	elog(NOTICE, "heaptuple.c:773: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
 	ItemPointerSetInvalid(&(tuple->t_self));
+	elog(NOTICE, "heaptuple.c:775: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
 	tuple->t_tableOid = InvalidOid;
+	elog(NOTICE, "heaptuple.c:777: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
 
+	elog(NOTICE, "heaptuple.c:779: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
+	
 	HeapTupleHeaderSetDatumLength(td, len);
 	HeapTupleHeaderSetTypeId(td, tupleDescriptor->tdtypeid);
 	HeapTupleHeaderSetTypMod(td, tupleDescriptor->tdtypmod);
 	/* We also make sure that t_ctid is invalid unless explicitly set */
 	ItemPointerSetInvalid(&(td->t_ctid));
 
+	elog(NOTICE, "heaptuple.c:787: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
+	
 	HeapTupleHeaderSetNatts(td, numberOfAttributes);
 	td->t_hoff = hoff;
 
 	if (tupleDescriptor->tdhasoid)		/* else leave infomask = 0 */
 		td->t_infomask = HEAP_HASOID;
 
+	elog(NOTICE, "heaptuple.c:795: tupleDescriptor->attrs[0]->attlen = %d.", tupleDescriptor->attrs[0]->attlen);
 	heap_fill_tuple(tupleDescriptor,
 					values,
 					isnull,
@@ -1074,6 +1102,7 @@ slot_deform_tuple(TupleTableSlot *slot, int natts)
 Datum
 slot_getattr(TupleTableSlot *slot, int attnum, bool *isnull)
 {
+	elog(NOTICE, "slot_getattr() called");
 	HeapTuple	tuple = slot->tts_tuple;
 	TupleDesc	tupleDesc = slot->tts_tupleDescriptor;
 	HeapTupleHeader tup;
