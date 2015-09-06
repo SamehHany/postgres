@@ -392,29 +392,7 @@ CreateTuple(Relation r, int x, double y)
 Form_pg_attribute
 CreateEmptyAttribute()
 {
-	Form_pg_attribute attr = (Form_pg_attribute) palloc(sizeof(Form_pg_attribute));
-	
-	/*attr->attrelid = Anum_pg_attribute_attrelid;
-	attr->attname = Anum_pg_attribute_attname;
-	attr->atttypid = Anum_pg_attribute_atttypid;
-	attr->attstattarget = Anum_pg_attribute_attstattarget;
-	attr->attlen = Anum_pg_attribute_attlen;
-	attr->attnum = Anum_pg_attribute_attnum;
-	attr->attndims = Anum_pg_attribute_attndims;
-	attr->attcacheoff = Anum_pg_attribute_attcacheoff;
-	attr->atttypmod = Anum_pg_attribute_atttypmod;
-	attr->attbyval = Anum_pg_attribute_attbyval;
-	attr->attstorage = Anum_pg_attribute_attstorage;
-	attr->attalign = Anum_pg_attribute_attalign;
-	attr->attnotnull = Anum_pg_attribute_attnotnull;
-	attr->atthasdef = Anum_pg_attribute_atthasdef;
-	attr->attisdropped = Anum_pg_attribute_attisdropped;
-	attr->attislocal = Anum_pg_attribute_attislocal;
-	attr->attinhcount = Anum_pg_attribute_attinhcount;
-	attr->attcollation = Anum_pg_attribute_attcollation;*/
-	//attr->attacl = Anum_pg_attribute_attacl;
-	//attr->attoptions = Anum_pg_attribute_attoptions;
-	//attr->attfdwoptions = Anum_pg_attribute_attfdwoptions;
+	Form_pg_attribute attr = (Form_pg_attribute) palloc(sizeof(FormData_pg_attribute));
 	
 	attr->attrelid = 0;
 	strcpy(attr->attname.data, "Null");
@@ -443,10 +421,8 @@ CreateEmptyTuple()
 {
 	Form_pg_attribute *attrs = (Form_pg_attribute) palloc(sizeof(Form_pg_attribute*));
 	attrs[0] = CreateEmptyAttribute();
-	elog(NOTICE, "nbtree.c:446: attrs[0]->attlen = %d.", attrs[0]->attlen);
 	
 	TupleDesc tuple_desc = CreateTupleDesc(1, false, attrs);
-	elog(NOTICE, "nbtree.c:449: tuple_desc->attrs[0]->attlen = %d.", tuple_desc->attrs[0]->attlen);
 	
 	Datum* values = (Datum *) palloc(sizeof(Datum));
 	bool* isnull = (bool *) palloc(sizeof(bool));
@@ -494,6 +470,12 @@ hypgettuple(PG_FUNCTION_ARGS)
 	 */
 	IndexScanDesc scan = (IndexScanDesc) PG_GETARG_POINTER(0);
 	ScanDirection dir = (ScanDirection) PG_GETARG_INT32(1);
+	
+	if(scan->prev_scanned)
+		PG_RETURN_BOOL(false);
+	else
+		scan->prev_scanned = true;
+	
 	BTScanOpaque so = (BTScanOpaque) scan->opaque;
 	bool		res;
 	
@@ -857,6 +839,8 @@ hypbeginscan(PG_FUNCTION_ARGS)
 
 	scan->xs_itup = NULL;
 	scan->xs_itupdesc = NULL;
+	
+	scan->prev_scanned = false;
 
 	ItemPointerSetInvalid(&scan->xs_ctup.t_self);
 	scan->xs_ctup.t_data = NULL;

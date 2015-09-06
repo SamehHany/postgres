@@ -105,6 +105,7 @@ typedef struct IndexScanDescData
 
 	/* state data for traversing HOT chains in index_getnext */
 	bool		xs_continue_hot;	/* T if must keep walking HOT chain */
+	bool prev_scanned; /* True if previously scanned, false otherwise */
 }	IndexScanDescData;
 
 /* Struct for heap-or-index scans of system tables */
